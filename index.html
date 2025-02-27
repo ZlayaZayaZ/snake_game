@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Игра на JavaScript</title>
+	<link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <h1>Игра "змейка"</h1>
+    <div class="content">
+        <div class="buttonAll">
+            <button class="button slow green" data-speed="180" type="button">slow</button>
+            <button class="button medium red" data-speed="120" type="button">medium</button>
+            <button class="button fast red" data-speed="60" type="button">fast</button>
+        </div>
+        <div class="game">
+            <canvas id="game">HTML5 не поддерживается</canvas>
+            <script src="src/js/index.js"></script>
+        </div>
+        <div class="resultRecordRulers">
+            <div class="check">
+              <div class="checkYou checkClass">
+                <div id="checkYou" class="field">Вы</div>
+                <div class="field">:</div>
+                <div id="check" class="checkResult field">0</div>
+              </div>
+              <div class="record">
+                <div class="slow checkClass">
+                    <div class="field">slow</div>
+                    <div class="field">:</div>
+                    <div class="resultRecord field">0</div>
+                </div>
+                <div class="medium checkClass">
+                    <div class="field">medium</div>
+                    <div class="field">:</div>
+                    <div class="resultRecord field">0</div>
+                </div>
+                <div class="fast checkClass">
+                    <div class="field">fast</div>
+                    <div class="field">:</div>
+                    <div class="resultRecor field">0</div>
+                </div>
+              </div>
+            </div>
+            <div class="rules">
+              <h2>Правила:</h2>
+              <div>
+                <p>Задача игрока - собрать змейкой максимальное количество яблок.</p>
+                <p>Змейка умирает если врезается сама в себя.</p>
+                <p>Змейка имеет 3 настройки скорости slow, middle, fast.</p>
+                <p>Если текущий рейтинг превысил рекордную отметку баллов за выбранную настройку - таблица рекордов обновиться когда змейка погибнет.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
