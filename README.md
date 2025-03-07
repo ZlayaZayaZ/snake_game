@@ -7,9 +7,6 @@
 
 #### Описание
 
-[Для обозначений использовался скачанный значек](https://icon666.com/ru/icon/beloe_serdtse_ldky8zfqocg3)
-
 Верстка страницы находится в файле index.html
 CSS - src/css/style.css
 Script - src/js/app.js
-Картинки - src/img/...

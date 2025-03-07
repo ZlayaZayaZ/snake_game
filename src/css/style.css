@@ -109,3 +109,6 @@ p {
     font-size: 17px;
 }
 
+.hidden {
+    display: none;
+}

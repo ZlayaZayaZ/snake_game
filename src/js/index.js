@@ -20,19 +20,17 @@ let gP = document.getElementById('game'), //Достаем canvas.
 gP.width = 1800; //Сохраняем четкость изображения, выставив полную ширину экрана.
 gP.height = 1800;
 
-// gP.width = window.innerWidth; //Сохраняем четкость изображения, выставив полную ширину экрана.
-// gP.height = window.innerHeight; //То же самое, но только с высотой.
-
 const buttonAll = document.querySelector(".buttonAll");
 let game = setInterval(gameFn, buttonAll.querySelector('.green').getAttribute('data-speed'));
-// let game = setInterval(gameFn, 180);
 
-// = setInterval(function(){
 function gameFn(){
 	g.clearRect(0,0,gP.width,gP.height); //Очищаем старое.
 	g.fillStyle = "red"; //Даем красный цвет для рисования яблока.
 	g.fillRect(...a, s, s); //Рисуем яблоко на холсте 30x30 с координатами a[0] и a[1].
 	g.fillStyle = "#000"; //А теперь черный цвет для змейки.
+    if (localStorage.getItem("record")) {
+        document.getElementById("record").textContent = localStorage.getItem("record")
+    }
 
     sBody.forEach(function(el, i){
    
@@ -42,6 +40,17 @@ function gameFn(){
         //Проверка на столкновение.
         var last = sBody.length - 1;
         if ( el.x == sBody[last].x && el.y == sBody[last].y && i < last) { 
+            //сохраняем результ в localStorage и обновляем статистику 
+            const nowCheck = Number(document.getElementById("check").textContent)
+            if (localStorage.getItem("record")) {
+                if (Number(localStorage.getItem("record")) < nowCheck) {
+                    localStorage.setItem("record", nowCheck);
+                    document.getElementById("record").textContent = nowCheck
+                }
+            } else {
+                localStorage.setItem("record", nowCheck)
+            }
+            document.getElementById("count").textContent = Number(document.getElementById("count").textContent) + 1
             sBody.splice(0,last); //Стираем тело змейки.
             sBody = [{x:0,y:0}]; //Создаем его заново.
             document.getElementById("check").textContent = 0;
@@ -93,6 +102,7 @@ sBody.forEach(function(pob){
     if (pob.x == a[0] && pob.y == a[1]) {
         newA();
         sBody.unshift({x: f.x - s, y:l.y});
+        // добавление нового результата в счет статистики
         document.getElementById("check").textContent = Number(document.getElementById("check").textContent) + 1;
         // check.textContent = Number(check.textContent) + 1;
     }
@@ -111,13 +121,6 @@ onkeydown = function (e) {
 	if (k == 38 && d != 2) d = 4; //Вверх
 };
 
-// const parent = document.getElementById("myParent");
-// const childrenArray = Array.from(parent.children);
-// childrenArray.forEach(child => {
-//   // Выполнить действия с дочерним элементом
-//   child.style.color = "red";
-// });
-
 const buttonsArray = Array.from(buttonAll.children);
 buttonsArray.forEach(function(button) {
     button.addEventListener('click', () => {
@@ -132,3 +135,31 @@ buttonsArray.forEach(function(button) {
         }
     }, false)
 });
+
+
+// const parent = document.getElementById("myParent");
+// const childrenArray = Array.from(parent.children);
+// childrenArray.forEach(child => {
+//   // Выполнить действия с дочерним элементом
+//   child.style.color = "red";
+// });
+
+const pause = document.getElementById('pause');
+console.log(pause)
+const go = document.querySelector('.go');
+console.log(go)
+
+pause.addEventListener('click', () => {
+    console.log('pause')
+    // pause.classList.add('green');
+    clearInterval(game);
+    pause.classList.add('hidden');
+    go.classList.remove('hidden');
+}, false)
+
+go.addEventListener('click', () => {
+    game = setInterval(gameFn, buttonAll.querySelector('.green').getAttribute('data-speed'));
+    go.classList.add('hidden');
+    pause.classList.remove('hidden');
+}, false)
+

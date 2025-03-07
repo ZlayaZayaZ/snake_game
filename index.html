@@ -28,21 +28,25 @@
               </div>
               <div class="record">
                 <div class="slow checkClass">
-                    <div class="field">slow</div>
+                    <div class="field">record</div>
                     <div class="field">:</div>
-                    <div class="resultRecord field">0</div>
+                    <div class="resultRecord field" id="record">0</div>
                 </div>
-                <div class="medium checkClass">
-                    <div class="field">medium</div>
+                <div class="count checkClass">
+                    <div class="field">count</div>
                     <div class="field">:</div>
-                    <div class="resultRecord field">0</div>
+                    <div class="resultRecord field" id="count">1</div>
                 </div>
-                <div class="fast checkClass">
+                <!-- <div class="fast checkClass">
                     <div class="field">fast</div>
                     <div class="field">:</div>
                     <div class="resultRecor field">0</div>
-                </div>
+                </div> -->
               </div>
+            </div>
+            <div class="buttonPause">
+              <button class="pause button" id="pause" type="button">pause</button> 
+              <button class="go hidden button" id="go" type="button">go</button> 
             </div>
             <div class="rules">
               <h2>Правила:</h2>
@@ -50,7 +54,8 @@
                 <p>Задача игрока - собрать змейкой максимальное количество яблок.</p>
                 <p>Змейка умирает если врезается сама в себя.</p>
                 <p>Змейка имеет 3 настройки скорости slow, middle, fast.</p>
-                <p>Если текущий рейтинг превысил рекордную отметку баллов за выбранную настройку - таблица рекордов обновиться когда змейка погибнет.</p>
+                <p>Если текущий рейтинг превысил рекордную отметку баллов - таблица рекордов обновиться когда змейка погибнет.</p>
+                <p>count - счетчик попыток побить рекорд после последнего раза.</p>
               </div>
             </div>
           </div>
