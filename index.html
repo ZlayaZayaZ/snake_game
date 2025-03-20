@@ -17,18 +17,17 @@
         </div>
         <div class="game">
             <canvas id="game">HTML5 не поддерживается</canvas>
-            <script src="src/js/index.js"></script>
         </div>
         <div class="resultRecordRulers">
             <div class="check">
               <div class="checkYou checkClass">
-                <div id="checkYou" class="field">Вы</div>
+                <div id="checkYou" class="field">now</div>
                 <div class="field">:</div>
                 <div id="check" class="checkResult field">0</div>
               </div>
               <div class="record">
                 <div class="slow checkClass">
-                    <div class="field">record</div>
+                    <div class="field">highscore</div>
                     <div class="field">:</div>
                     <div class="resultRecord field" id="record">0</div>
                 </div>
@@ -37,16 +36,11 @@
                     <div class="field">:</div>
                     <div class="resultRecord field" id="count">1</div>
                 </div>
-                <!-- <div class="fast checkClass">
-                    <div class="field">fast</div>
-                    <div class="field">:</div>
-                    <div class="resultRecor field">0</div>
-                </div> -->
               </div>
             </div>
             <div class="buttonPause">
-              <button class="pause button" id="pause" type="button">pause</button> 
-              <button class="go hidden button" id="go" type="button">go</button> 
+              <button class="pause buttonStop" type="button">pause</button> 
+              <button class="go buttonStop hidden" type="button">go</button> 
             </div>
             <div class="rules">
               <h2>Правила:</h2>
@@ -58,8 +52,10 @@
                 <p>count - счетчик попыток побить рекорд после последнего раза.</p>
               </div>
             </div>
+            <button class="recordReset buttonStop" type="button">highscore reset</button>
           </div>
         </div>
+        <script src="src/js/index.js"></script>
     </div>
 </body>
 </html>

@@ -1,10 +1,6 @@
-// const check = document.getElementById("check");
-// let record = document.querySelector(".record");
-
 //Возвращает случайное число.
 function rand (min, max) {var k = Math.floor(Math.random() * (max - min) + min); return (Math.round( k / s) * s);}
 //Функция для создания нового яблока.
-// function newA () {a = [rand(0, innerWidth),rand(0, innerHeight)];}
 function newA () {a = [rand(0, gP.width),rand(0, gP.height)];}
 //Функция для создания тела змейки из одного элемента.
 function newB () {sBody = [{x: 0,y: 0}];}
@@ -13,7 +9,7 @@ let gP = document.getElementById('game'), //Достаем canvas.
 	//Получаем "контекст" (методы для рисования в canvas).
     g = gP.getContext('2d'), 
 	sBody = null, //Тело змейки, мы потом его создадим.
-	d = 1, //Направление змейки 1 - dправо, 2 - вниз 3 - влево, 4 - вверх.
+	d = 1, //Направление змейки 1 - право, 2 - вниз 3 - влево, 4 - вверх.
 	a = null, //Яблоко, массив, 0 элемент - x, 1 элемент - y.
 	s = 30; newB(); newA(); //Создаем змейку.
 
@@ -25,11 +21,14 @@ let game = setInterval(gameFn, buttonAll.querySelector('.green').getAttribute('d
 
 function gameFn(){
 	g.clearRect(0,0,gP.width,gP.height); //Очищаем старое.
-	g.fillStyle = "red"; //Даем красный цвет для рисования яблока.
-	g.fillRect(...a, s, s); //Рисуем яблоко на холсте 30x30 с координатами a[0] и a[1].
+	g.fillStyle = "red"; //Даем красный цвет для рисования "яблока".
+	g.fillRect(...a, s, s); //Рисуем "яблоко" на холсте 30x30 с координатами a[0] и a[1].
 	g.fillStyle = "#000"; //А теперь черный цвет для змейки.
     if (localStorage.getItem("record")) {
         document.getElementById("record").textContent = localStorage.getItem("record")
+    }
+    if (localStorage.getItem("count")) {
+        document.getElementById("count").textContent = localStorage.getItem("count")
     }
 
     sBody.forEach(function(el, i){
@@ -46,11 +45,15 @@ function gameFn(){
                 if (Number(localStorage.getItem("record")) < nowCheck) {
                     localStorage.setItem("record", nowCheck);
                     document.getElementById("record").textContent = nowCheck
+                    localStorage.setItem("count", "1");
+                } else {
+                    localStorage.setItem("count", Number(localStorage.getItem("count")) + 1);
                 }
             } else {
                 localStorage.setItem("record", nowCheck)
+                localStorage.setItem("count", "1");
             }
-            document.getElementById("count").textContent = Number(document.getElementById("count").textContent) + 1
+            // document.getElementById("count").textContent = Number(document.getElementById("count").textContent) + 1
             sBody.splice(0,last); //Стираем тело змейки.
             sBody = [{x:0,y:0}]; //Создаем его заново.
             document.getElementById("check").textContent = 0;
@@ -136,22 +139,10 @@ buttonsArray.forEach(function(button) {
     }, false)
 });
 
-
-// const parent = document.getElementById("myParent");
-// const childrenArray = Array.from(parent.children);
-// childrenArray.forEach(child => {
-//   // Выполнить действия с дочерним элементом
-//   child.style.color = "red";
-// });
-
-const pause = document.getElementById('pause');
-console.log(pause)
+const pause = document.querySelector(".pause");
 const go = document.querySelector('.go');
-console.log(go)
 
 pause.addEventListener('click', () => {
-    console.log('pause')
-    // pause.classList.add('green');
     clearInterval(game);
     pause.classList.add('hidden');
     go.classList.remove('hidden');
@@ -163,3 +154,8 @@ go.addEventListener('click', () => {
     pause.classList.remove('hidden');
 }, false)
 
+const recordReset = document.querySelector(".recordReset")
+recordReset.addEventListener('click', () => {
+    localStorage.clear()
+    window.location.reload()
+}, false)
